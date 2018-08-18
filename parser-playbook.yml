@@ -11,14 +11,14 @@
 
   - name: collect facts from cisco ios devices
     import_role:
-      name: cisco_ios
+      name: "{{ ansible_network_provider }}"
       tasks_from: get_config
 
   - debug: var=cisco_ios.config
 
 #  - name: collect facts from cisco ios devices
 #    import_role:
-#      name: cisco_ios
+#      name: "{{ ansible_network_provider }}"
 #      tasks_from: get_facts
 #    vars:
 #      subset:
