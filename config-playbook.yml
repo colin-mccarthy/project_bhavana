@@ -11,5 +11,5 @@
 
   - name: configure cisco ios devices
     import_role:
-      name: ansible-network.config-manager
+      name: ansible-network.config_manager
       tasks_from: foo
