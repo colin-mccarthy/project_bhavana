@@ -1,0 +1,21 @@
+---
+
+- src: https://github.com/ansible-network/config_manager
+  name: ansible-network.config_manager
+  scm: git
+  version: devel
+  
+- src: https://github.com/ansible-network/network-engine
+  name: ansible-network.network-engine
+  scm: git
+  version: devel
+
+- src: https://github.com/ansible-network/cisco_ios
+  name: ansible-network.cisco_ios
+  scm: git
+  version: devel
+
+- src: https://github.com/ansible-network/cisco_nxos
+  name: ansible-network.cisco_nxos
+  scm: git
+  version: devel
