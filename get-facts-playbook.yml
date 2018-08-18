@@ -1,0 +1,13 @@
+---
+- hosts: all
+
+  tasks:
+    - name: get lldp neighbors
+      include_role:
+        name: "{{ ansible_network_provider }}"
+        tasks_from: get_facts
+      vars:
+        subset: ['lldp']
+        toplevel: network_facts
+
+    - debug: var=network_facts.lldp
