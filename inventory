@@ -14,7 +14,7 @@ ansible_become_pass=cisco
 remote_user=pi
 ansible_network_os=ios
 ansible_connection=network_cli
-ansible_network_provider=ansible-network.cisco_ios
+ansible_network_provider=cisco_ios
 
 [junos]
 192.168.161.20 ansible_ssh_host=192.168.161.20 

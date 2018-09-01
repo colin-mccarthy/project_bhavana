@@ -1,5 +1,5 @@
 ---
-- name: config manager example
+- name: parser example
   hosts: ios
   gather_facts: no
   connection: network_cli
@@ -10,8 +10,8 @@
 
 
   - name: collect facts from cisco ios devices
-    include_role:
+    import_role:
       name: config_manager
-      tasks_from: load
+      tasks_from: load_config
     vars:
       config_file: host_vars/192.168.161.15
