@@ -1,3 +1,0 @@
-- name: "autorun"
-  include_tasks: run.yaml
-  when: autorun|default(false)

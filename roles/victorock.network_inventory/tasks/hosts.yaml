@@ -1,6 +1,0 @@
----
-- name: "Ensure content of hosts.yaml"
-  local_action:
-    module: template
-    src: "hosts.yaml.j2"
-    dest: "{{ playbook_dir }}/hosts.yaml"
