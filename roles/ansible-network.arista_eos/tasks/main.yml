@@ -1,0 +1,22 @@
+---
+# tasks file for arista_eos
+#
+- name: initialize function
+  include_tasks: includes/init.yaml
+
+- name: set role supported functions
+  set_fact:
+    eos_functions:
+      - clear_sessions
+      - load_config
+      - get_facts
+      - get_config
+      - noop
+
+- name: validate the requested function is supported
+  fail:
+    msg: "invalid function specified, expected one of {{ eos_functions }}, got {{ function }}"
+  when: function | default('noop') not in eos_functions
+
+- name: include function specific tasks and run
+  include_tasks: "{{ function  | default('noop') }}.yaml"

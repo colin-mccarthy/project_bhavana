@@ -11,7 +11,7 @@
 
   - name: collect facts from cisco ios devices
     include_role:
-      name: config_manager
-      tasks_from: load
+      name: ansible-network.config_manager
+      tasks_from: load.yaml
     vars:
       config_file: host_vars/192.168.161.15

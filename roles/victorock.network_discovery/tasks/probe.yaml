@@ -1,0 +1,6 @@
+- name: "probe"
+  include_tasks: "probe/{{ ansible_network_os }}.yaml"
+  loop: "{{ network_discovery_probe_groups }}"
+  loop_control:
+    loop_var: ansible_network_os
+  when: network_discovery_os is not defined

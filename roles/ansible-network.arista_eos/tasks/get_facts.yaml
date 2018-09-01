@@ -1,0 +1,17 @@
+---
+- name: initialize function
+  include_tasks: includes/init.yaml
+
+- name: collect platform capabilities as facts
+  eos_capabilities:
+
+- name: run command and parse output
+  include_tasks: includes/run_cli.yaml
+  vars:
+    eos_command: "{{ item.command }}"
+    eos_parser: "cli/{{ item.parser }}"
+    eos_parser_engine: "{{ item.engine | default('command_parser') }}"
+    eos_run_cli_command_pre_hook: "{{ item.pre_hook | default(None) }}"
+    eos_run_cli_command_post_hook: "{{ item.post_hook | default(None) }}"
+  loop: "{{ lookup('file', eos_get_facts_command_map) | from_yaml }}"
+  when: eos_get_facts_subset |  intersect(item.groups)

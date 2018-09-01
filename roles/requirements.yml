@@ -20,12 +20,7 @@
   scm: git
   version: devel
 
-- name: victorock.network_discovery
-  src: https://github.com/victorock/network_discovery.git
+- name: ansible-network.config_manager
+  src: https://github.com/ansible-network/config_manager.git
   scm: git
-  version: dev
-
-- name: victorock.network_inventory
-  src: https://github.com/victorock/network_inventory.git
-  scm: git
-  version: dev
+  version: devel
