@@ -9,9 +9,9 @@
   tasks:
 
 
-  - name: collect facts from cisco ios devices
+  - name: push config files to cisco ios devices
     include_role:
       name: ansible-network.config_manager
       tasks_from: load.yaml
     vars:
-      config_file: host_vars/192.168.161.15
+      config_file: host_vars/{{ ansible_hostname}}
