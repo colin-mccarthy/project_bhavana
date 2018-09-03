@@ -6,6 +6,9 @@
   roles:
     - ansible-network.network-engine
 
+  vars:
+    ios_config_use_terminal: False
+
   tasks:
 
 
@@ -14,4 +17,4 @@
       name: ansible-network.config_manager
       tasks_from: load.yaml
     vars:
-      config_file: host_vars/{{ ansible_hostname}}
+      config_file: device_configs/{{ inventory_hostname }}
