@@ -1,0 +1,40 @@
+---
+- name: loop example
+  hosts: ios
+  gather_facts: no
+  connection: network_cli
+  roles:
+    - ansible-network.network-engine
+
+  tasks:
+
+
+  - name: collect facts from cisco ios devices
+    import_role:
+      name: ansible-network.cisco_ios
+      tasks_from: get_config
+
+#  - name: collect facts from cisco ios devices
+#    import_role:
+#      name: cisco_ios
+#      tasks_from: get_facts
+#    vars:
+#      subset:
+#        - default
+#        - interfaces
+#        - prefix-list
+#        - interface-config
+
+#  - debug: var=cisco_ios.system
+#  - debug: var=cisco_ios.interfaces
+#  - debug: var=cisco_ios.prefix_list_dict
+
+  - debug: var=cisco_ios.config
+
+
+  - name: configure on multiple interfaces
+    ios_config:
+      lines:
+        - no switchport
+      parents: "{{ item.cisco_ios.config.name }}"
+    with_items: cisco_ios.config
