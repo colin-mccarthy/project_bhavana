@@ -269,31 +269,12 @@ no ip forward-protocol udp tacacs
 no ip http server
 no ip http secure-server
 !
-ip bgp-community new-format
-ip community-list expanded PREFER-DOMESTIC permit 64590:100
-ip community-list expanded DEFER-DOMESTIC permit 64590:300
-!
 ip access-list extended test
 !
-!
-ip prefix-list CARRIER-IN description Accept Routes from SPRINT
-ip prefix-list CARRIER-IN seq 10 permit 192.168.0.0/20 le 32
-!
-ip prefix-list IBGP-IN description Accept Routes from Spoke-R2
-ip prefix-list IBGP-IN seq 10 permit 10.10.0.0/20 le 32
-ip prefix-list IBGP-IN seq 20 permit 10.11.0.0/20 le 32
-ip sla enable reaction-alerts
-logging source-interface Loopback0
 logging 8.8.8.8
 logging 8.8.4.4
 !
-snmp-server group foo v3 priv notify *tv.FFFFFFFF.FFFFFFFF.FFFFFFFF.FFFFFFFF0F
-snmp-server group V3-RO v3 priv read V3read access 25
-snmp-server group V3-RW v3 priv read V3read write V3write notify *tv.FFFFFFFF.FFFFFFFF.FFFFFFFF.FFFFFFFF7F access 26
-!
-!
-line con 0
- logging synchronous
+logging synchronous
 line vty 0 4
  exec-timeout 60 0
  privilege level 15
