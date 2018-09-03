@@ -259,16 +259,6 @@ interface Vlan1
  no ip address
  shutdown
 !
-ip classless
-no ip forward-protocol udp tftp
-no ip forward-protocol udp domain
-no ip forward-protocol udp time
-no ip forward-protocol udp netbios-ns
-no ip forward-protocol udp netbios-dgm
-no ip forward-protocol udp tacacs
-no ip http server
-no ip http secure-server
-!
 ip access-list extended test
 !
 logging 8.8.8.8
