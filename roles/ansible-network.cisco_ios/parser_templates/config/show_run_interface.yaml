@@ -72,12 +72,12 @@
       object:
         - key: name
           value: "{{ item.name.matches.0 }}"
-        - key: ip_addess
+        - key: ip_address
           value: "{{ item.ip_address | map(attribute='matches') | list }}"
         - key: description
           value: "{{ item.description.matches.0 }}"
         - key: ip_helper
-          value: "{{ item.ip_helper | map(attribute='matches') | list }}"
+          value: "{{ item.ip_helper |  map(attribute='matches') | list | default([]) }}"
         - key: enabled
           value: "{{ not item.enabled.matches }}"
         - key: mtu
