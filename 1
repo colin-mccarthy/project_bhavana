@@ -6,19 +6,26 @@
   roles:
     - ansible-network.network-engine
 
+  vars:
+    ip_helper_template
+      10.10.10.10
+      20.20.20.20
+
   tasks:
 
 
   - name: collect facts from cisco ios devices
     import_role:
-      name: "{{ ansible_network_provider }}"
+      name: ansible-network.cisco_ios 
       tasks_from: get_config
 
   - debug: var=cisco_ios.config
 
   - name: "Remove unwanted ip helper addresses"
-    with_items: "{{ cisco_ios.config.value.ip_helper }}"
-    when: "item not in dns_servers"
+    with_subelements:
+    - "{{cisco_ios.config['interface-config']}}"
+    - ip_helper
+    when: item.1 not in ip_helper_template | default([])
     ios_config:
       lines:
         - "no ip_helper {{ item }}"
