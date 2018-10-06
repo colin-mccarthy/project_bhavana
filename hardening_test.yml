@@ -1,0 +1,23 @@
+---
+- name: 
+  hosts: ios
+  gather_facts: no
+  connection: network_cli
+  roles:
+    - ansible-network.network-engine
+    - ansible_cisco_ios_12.2_hardening_role
+
+
+#  tasks:
+
+#  - name: 
+#    import_role:
+#      name: ansible-network.cisco_ios
+#      tasks_from: get_config
+
+#  - debug:
+#      var: cisco_ios.config
+#      verbosity: 2
+
+
+
