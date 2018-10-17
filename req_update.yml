@@ -1,0 +1,14 @@
+
+---
+
+- name: UPGRADE REQ ROLES
+  hosts: localhost
+  connection: local
+  sudo: yes
+  gather_facts: no
+
+
+  tasks:
+    - name: UPDATE/INSTALL ROLES FROM REQUIREMENTS FILE
+      command:  ansible-galaxy install -r roles/requirements.yml -p roles/
+      delegate_to: localhost
