@@ -1,0 +1,26 @@
+---
+ - name: combine lists of facts
+   hosts: all
+   connection: network_cli
+   strategy: free
+   gather_facts: false
+
+   roles:
+     - name: ansible-network.cisco_ios
+       function: get_facts
+       subset:
+         - interfaces_status
+         - interfaces_description
+
+   tasks:
+     - name: combine items in lists
+       set_fact:
+         interface_list: "{{ interface_list|default([]) + [ item.0 | combine(item.1) ] }}"
+       loop: "{{ interfaces_status|product(interfaces_description)|list }}"
+       loop_control:
+         label: "{{ item.0.PORT }}"
+       when: item.0.PORT == item.1.PORT
+
+     - name: print lists
+       debug:
+         var: interface_list
