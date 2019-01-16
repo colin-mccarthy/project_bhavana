@@ -1,0 +1,11 @@
+1Value PORT (\S+)
+Value STATE (up|down|admin down)
+Value PROTOCOL (up|down)
+Value DESCRIPTION (.+)
+
+Start
+ ^Interface -> Begin
+
+Begin
+ ^(?=\s{0,9}${PORT}).{9}\s+${STATE}\s+${PROTOCOL}\s+$$ -> Record
+ ^(?=\s{0,9}${PORT}).{9}\s+${STATE}\s+${PROTOCOL}\s+${DESCRIPTION}$$ -> Record
